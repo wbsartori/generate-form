@@ -44,18 +44,22 @@ class RedirectBootstrap
     {
         switch ($typeAction) {
             case $typeAction === 'crud':
-                return $this->bootstrapGenerateCrud->generate($commands);
+                $this->bootstrapGenerateCrud->generate($commands);
+                break;
             case $typeAction === 'list':
-                return $this->bootstrapGenerateList->generate();
+                $this->bootstrapGenerateList->generate($commands);
+                break;
             case $typeAction === 'new':
-                return $this->bootstrapGenerateNew->generate();
+                $this->bootstrapGenerateNew->generate($commands);
+                break;
             case $typeAction === 'edit':
-                return $this->bootstrapGenerateEdit->generate();
+                $this->bootstrapGenerateEdit->generate($commands);
+                break;
             case $typeAction === 'delete':
-                return $this->bootstrapGenerateDelete->generate();
-
+                $this->bootstrapGenerateDelete->generate($commands);
+                break;
             default:
-                print_r('Command not found');
+                sprintf('Command  %s not found', $typeAction);
         }
     }
 }

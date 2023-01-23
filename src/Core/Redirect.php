@@ -2,19 +2,11 @@
 
 namespace WBGenerateForm\Source\Core;
 
+use WBGenerateForm\Source\Config\Commanders;
 use WBGenerateForm\Source\Core\Bootstrap\RedirectBootstrap;
 
 class Redirect
 {
-    private const COMMAND_OPTIONS = [
-        'create-template-crud' => 'create-template-crud',
-        'create-template-new' => 'create-template-new',
-        'create-template-edit' => 'create-template-edit',
-        'create-template-delete' => 'create-template-delete',
-        'create-template-list' => 'create-template-list',
-        'update-template-add' => 'create-template-add',
-    ];
-
     /**
      * @var RedirectBootstrap
      */
@@ -30,15 +22,12 @@ class Redirect
         $commandFirst = array_key_first($options);
 
         switch ($commandFirst) {
-            case self::COMMAND_OPTIONS[$commandFirst] && (empty($options['type']) || $options['type'] === 'bootstrap'):
+            case Commanders::COMMAND_OPTIONS[$commandFirst] && (empty($options['type']) || $options['type'] === 'bootstrap'):
                 $action = $this->actionVerify($commandFirst);
                 $this->redirectBootstrap->getTypeGenerate($action, $options);
-
-            case self::COMMAND_OPTIONS[$commandFirst]:
-                print_r('teste');
-                exit();
+                break;
             default:
-                print_r('Command not found');
+                break;
         }
     }
 

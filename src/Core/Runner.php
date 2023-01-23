@@ -3,6 +3,7 @@
 namespace WBGenerateForm\Source\Core;
 
 use WBGenerateForm\Source\Config\Commanders;
+use WBGenerateForm\Source\Config\Config;
 
 class Runner
 {
@@ -23,13 +24,18 @@ class Runner
     /**
      * @return void
      */
-    public function run()
+    public function run(array $argv)
     {
         $this->setShort( Commanders::SHORT);
         $this->setLongOptions(Commanders::LONG_OPTIONS);
         $this->setOptions();
 
-        return $this->redirect->validateOptions($this->getOptions());
+        if(!in_array(str_replace('--', '', $argv[1]),  Commanders::COMMAND_OPTIONS)){
+            echo 'Command ' . $argv[1] . ' not found in commands list!';
+            exit;
+        }
+
+        $this->redirect->validateOptions($this->getOptions());
     }
 
     /**

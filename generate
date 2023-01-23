@@ -1,3 +1,5 @@
+#!/usr/bin/env php
+
 <?php
 
 use WBGenerateForm\Source\Core\Runner;
@@ -5,4 +7,4 @@ use WBGenerateForm\Source\Core\Runner;
 require_once 'vendor/autoload.php';
 
 $commander = new Runner();
-$commander->run();
+$commander->run($argv);

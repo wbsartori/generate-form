@@ -18,4 +18,13 @@ class Commanders
         'fields::',
         'fieldsAdd:'
     ];
+
+    public const COMMAND_OPTIONS = [
+        'create-template-crud' => 'create-template-crud',
+        'create-template-new' => 'create-template-new',
+        'create-template-edit' => 'create-template-edit',
+        'create-template-delete' => 'create-template-delete',
+        'create-template-list' => 'create-template-list',
+        'update-template-add' => 'create-template-add',
+    ];
 }

@@ -4,7 +4,7 @@ namespace WBGenerateForm\Source\Core\Bootstrap\Generates;
 
 class BootstrapGenerateNew
 {
-    public function generate() {
+    public function generate(array $commands) {
         echo 'generateNew';
         exit;
     }
