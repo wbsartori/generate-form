@@ -16,6 +16,8 @@ class BootstrapGenerateCrud
         $this->generateNew($commands);
         $this->generateEdit($commands);
         $this->generateDelete($commands);
+        sleep(2);
+        echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mSuccessfully generated templates crud!\e[0m\n";
     }
 
     public function generateList(array $commands)

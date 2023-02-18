@@ -2,9 +2,17 @@
 
 <?php
 
-use WBGenerateForm\Source\Core\Runner;
+require_once __DIR__ . '/vendor/autoload.php';
 
-require_once 'vendor/autoload.php';
+use Pimple\Container;
+use WBGenerateForm\Source\Core\Initialize;
+use WBGenerateForm\Source\Providers\InitializeProvider;
 
-$commander = new Runner();
-$commander->run($argv);
+$container = new Container();
+$container->register((new InitializeProvider()));
+
+echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;42mSearching templates!\e[0m\n";
+sleep(2);
+
+$container->offsetGet(Initialize::class)->run($argv);
+

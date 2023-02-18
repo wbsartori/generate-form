@@ -3,9 +3,8 @@
 namespace WBGenerateForm\Source\Core;
 
 use WBGenerateForm\Source\Config\Commanders;
-use WBGenerateForm\Source\Config\Config;
 
-class Runner
+class Initialize
 {
     /** @var string */
     private string $short;
@@ -13,13 +12,10 @@ class Runner
     private array $longOptions;
     /** @var array */
     private array $options;
-    /** @var Redirect */
+    /**
+     * @var Redirect
+     */
     private Redirect $redirect;
-
-    public function __construct()
-    {
-        $this->redirect = new Redirect();
-    }
 
     /**
      * @return void
@@ -31,7 +27,8 @@ class Runner
         $this->setOptions();
 
         if(!in_array(str_replace('--', '', $argv[1]),  Commanders::COMMAND_OPTIONS)){
-            echo 'Command ' . $argv[1] . ' not found in commands list!';
+            echo "\e[1;31;41mERROR: Command \e[1m" . $argv[1] . "\e[1;31;41m not found in commands list!\e[0m\n";
+            echo "\e[1;33;43mWARNING: to know the possible commands type 'php generate --help'!\e[0m\n";
             exit;
         }
 
@@ -84,5 +81,13 @@ class Runner
     public function setOptions(): void
     {
         $this->options = getopt($this->getShort(), $this->getLongOptions());
+    }
+
+    /**
+     * @param Redirect $redirect
+     */
+    public function setRedirect(Redirect $redirect): void
+    {
+        $this->redirect = $redirect;
     }
 }

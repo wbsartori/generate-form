@@ -12,11 +12,10 @@ class Redirect
      */
     private RedirectBootstrap $redirectBootstrap;
 
-    public function __construct()
-    {
-        $this->redirectBootstrap = new RedirectBootstrap();
-    }
-
+    /**
+     * @param $options
+     * @return void
+     */
     public function validateOptions($options)
     {
         $commandFirst = array_key_first($options);
@@ -31,8 +30,20 @@ class Redirect
         }
     }
 
+    /**
+     * @param string $command
+     * @return false|string
+     */
     public function actionVerify(string $command)
     {
         return substr($command, 16, 10);
+    }
+
+    /**
+     * @param RedirectBootstrap $redirectBootstrap
+     */
+    public function setRedirectBootstrap(RedirectBootstrap $redirectBootstrap): void
+    {
+        $this->redirectBootstrap = $redirectBootstrap;
     }
 }

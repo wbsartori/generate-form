@@ -31,35 +31,77 @@ class RedirectBootstrap
      */
     private BootstrapGenerateDelete $bootstrapGenerateDelete;
 
-    public function __construct()
-    {
-        $this->bootstrapGenerateCrud = new BootstrapGenerateCrud();
-        $this->bootstrapGenerateList = new BootstrapGenerateList();
-        $this->bootstrapGenerateNew = new BootstrapGenerateNew();
-        $this->bootstrapGenerateEdit = new BootstrapGenerateEdit();
-        $this->bootstrapGenerateDelete = new BootstrapGenerateDelete();
-    }
-
+    /**
+     * @param string $typeAction
+     * @param array $commands
+     * @return void
+     */
     public function getTypeGenerate(string $typeAction, array $commands)
     {
         switch ($typeAction) {
             case $typeAction === 'crud':
+                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates crud wait!\e[0m\n";
                 $this->bootstrapGenerateCrud->generate($commands);
                 break;
             case $typeAction === 'list':
+                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates list wait!\e[0m\n";
                 $this->bootstrapGenerateList->generate($commands);
                 break;
             case $typeAction === 'new':
+                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates new wait!\e[0m\n";
                 $this->bootstrapGenerateNew->generate($commands);
                 break;
             case $typeAction === 'edit':
+                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates edit wait!\e[0m\n";
                 $this->bootstrapGenerateEdit->generate($commands);
                 break;
             case $typeAction === 'delete':
+                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates delete wait!\e[0m\n";
                 $this->bootstrapGenerateDelete->generate($commands);
                 break;
             default:
-                sprintf('Command  %s not found', $typeAction);
+                echo "\e[1;31;41mERROR: Command \e[1m" . $typeAction . "\e[1;31;41m not found in commands list!\e[0m\n";
+                break;
         }
+    }
+
+    /**
+     * @param BootstrapGenerateCrud $bootstrapGenerateCrud
+     */
+    public function setBootstrapGenerateCrud(BootstrapGenerateCrud $bootstrapGenerateCrud): void
+    {
+        $this->bootstrapGenerateCrud = $bootstrapGenerateCrud;
+    }
+
+    /**
+     * @param BootstrapGenerateList $bootstrapGenerateList
+     */
+    public function setBootstrapGenerateList(BootstrapGenerateList $bootstrapGenerateList): void
+    {
+        $this->bootstrapGenerateList = $bootstrapGenerateList;
+    }
+
+    /**
+     * @param BootstrapGenerateNew $bootstrapGenerateNew
+     */
+    public function setBootstrapGenerateNew(BootstrapGenerateNew $bootstrapGenerateNew): void
+    {
+        $this->bootstrapGenerateNew = $bootstrapGenerateNew;
+    }
+
+    /**
+     * @param BootstrapGenerateEdit $bootstrapGenerateEdit
+     */
+    public function setBootstrapGenerateEdit(BootstrapGenerateEdit $bootstrapGenerateEdit): void
+    {
+        $this->bootstrapGenerateEdit = $bootstrapGenerateEdit;
+    }
+
+    /**
+     * @param BootstrapGenerateDelete $bootstrapGenerateDelete
+     */
+    public function setBootstrapGenerateDelete(BootstrapGenerateDelete $bootstrapGenerateDelete): void
+    {
+        $this->bootstrapGenerateDelete = $bootstrapGenerateDelete;
     }
 }
