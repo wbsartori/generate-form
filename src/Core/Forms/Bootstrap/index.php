@@ -5,9 +5,11 @@ if(basename($_SERVER['PHP_SELF'], '.php') === basename(__FILE__, '.php')) {
     die();
 }
 
-require_once '../../../../vendor/autoload.php';
+require_once BASE_ROOT . '/vendor/autoload.php';
 
 ?>
+
+<?php include_once('../_includes/include.header.php'); ?>
 
 <h4 class="mt-5">TITLE</h4>
 <hr class="bg-dark">
@@ -37,3 +39,5 @@ require_once '../../../../vendor/autoload.php';
         </table>
     </div>
 </div>
+
+<?php include_once('../_includes/include.footer.php'); ?>

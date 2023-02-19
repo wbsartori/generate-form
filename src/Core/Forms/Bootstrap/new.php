@@ -5,7 +5,7 @@ if (basename($_SERVER['PHP_SELF'], '.php') === basename(__FILE__, '.php')) {
     die();
 }
 
-require_once '../../../../vendor/autoload.php';
+require_once BASE_ROOT . '/vendor/autoload.php';
 
 ?>
 
