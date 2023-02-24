@@ -23,7 +23,7 @@ class LaravelGenerateCrud
         $folder = $this->verifyExistsDirectoryOrCreate($commands['path']);
         $template = BASE_ROOT . 'src\Core\Forms\Laravel\index.blade.php';
         $file = file_get_contents($template);
-        $fileData = fopen($folder . DIRECTORY_SEPARATOR . "index.php", "w") or die("Unable to open file!");
+        $fileData = fopen($folder . DIRECTORY_SEPARATOR . "index.blade.php", "w") or die("Unable to open file!");
         fwrite($fileData, $file);
         fclose($fileData);
     }
@@ -33,7 +33,7 @@ class LaravelGenerateCrud
         $folder = $this->verifyExistsDirectoryOrCreate($commands['path']);
         $template = BASE_ROOT . 'src\Core\Forms\Laravel\new.blade.php';
         $file = file_get_contents($template);
-        $fileData = fopen($folder . DIRECTORY_SEPARATOR . "_new.php", "w") or die("Unable to open file!");
+        $fileData = fopen($folder . DIRECTORY_SEPARATOR . "_new.blade.php", "w") or die("Unable to open file!");
         fwrite($fileData, $file);
         fclose($fileData);
     }
@@ -43,7 +43,7 @@ class LaravelGenerateCrud
         $folder = $this->verifyExistsDirectoryOrCreate($commands['path']);
         $template = BASE_ROOT . 'src\Core\Forms\Laravel\edit.blade.php';
         $file = file_get_contents($template);
-        $fileData = fopen($folder . DIRECTORY_SEPARATOR . "_edit.php", "w") or die("Unable to open file!");
+        $fileData = fopen($folder . DIRECTORY_SEPARATOR . "_edit.blade.php", "w") or die("Unable to open file!");
         fwrite($fileData, $file);
         fclose($fileData);
     }
@@ -53,7 +53,7 @@ class LaravelGenerateCrud
         $folder = $this->verifyExistsDirectoryOrCreate($commands['path']);
         $template = BASE_ROOT . 'src\Core\Forms\Laravel\_form.blade.php';
         $file = file_get_contents($template);
-        $fileData = fopen($folder . DIRECTORY_SEPARATOR . "_form.php", "w") or die("Unable to open file!");
+        $fileData = fopen($folder . DIRECTORY_SEPARATOR . "_form.blade.php", "w") or die("Unable to open file!");
         fwrite($fileData, $file);
         fclose($fileData);
     }

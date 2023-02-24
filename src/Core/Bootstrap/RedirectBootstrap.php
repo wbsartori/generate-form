@@ -3,10 +3,10 @@
 namespace WBGenerateForm\Source\Core\Bootstrap;
 
 use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateCrud;
-use WBGenerateForm\Source\Core\Bootstrap\Generates\LaravelGenerateDelete;
-use WBGenerateForm\Source\Core\Bootstrap\Generates\LaravelGenerateEdit;
-use WBGenerateForm\Source\Core\Bootstrap\Generates\LaravelGenerateList;
-use WBGenerateForm\Source\Core\Bootstrap\Generates\LaravelGenerateNew;
+use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateDelete;
+use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateEdit;
+use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateList;
+use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateNew;
 
 class RedirectBootstrap
 {
@@ -15,21 +15,21 @@ class RedirectBootstrap
      */
     private BootstrapGenerateCrud $bootstrapGenerateCrud;
     /**
-     * @var LaravelGenerateList
+     * @var BootstrapGenerateList
      */
-    private LaravelGenerateList $bootstrapGenerateList;
+    private BootstrapGenerateList $bootstrapGenerateList;
     /**
-     * @var LaravelGenerateNew
+     * @var BootstrapGenerateNew
      */
-    private LaravelGenerateNew $bootstrapGenerateNew;
+    private BootstrapGenerateNew $bootstrapGenerateNew;
     /**
-     * @var LaravelGenerateEdit
+     * @var BootstrapGenerateEdit
      */
-    private LaravelGenerateEdit $bootstrapGenerateEdit;
+    private BootstrapGenerateEdit $bootstrapGenerateEdit;
     /**
-     * @var LaravelGenerateDelete
+     * @var BootstrapGenerateDelete
      */
-    private LaravelGenerateDelete $bootstrapGenerateDelete;
+    private BootstrapGenerateDelete $bootstrapGenerateDelete;
 
     /**
      * @param string $typeAction
@@ -74,33 +74,33 @@ class RedirectBootstrap
     }
 
     /**
-     * @param LaravelGenerateList $bootstrapGenerateList
+     * @param BootstrapGenerateList $bootstrapGenerateList
      */
-    public function setBootstrapGenerateList(LaravelGenerateList $bootstrapGenerateList): void
+    public function setBootstrapGenerateList(BootstrapGenerateList $bootstrapGenerateList): void
     {
         $this->bootstrapGenerateList = $bootstrapGenerateList;
     }
 
     /**
-     * @param LaravelGenerateNew $bootstrapGenerateNew
+     * @param BootstrapGenerateNew $bootstrapGenerateNew
      */
-    public function setBootstrapGenerateNew(LaravelGenerateNew $bootstrapGenerateNew): void
+    public function setBootstrapGenerateNew(BootstrapGenerateNew $bootstrapGenerateNew): void
     {
         $this->bootstrapGenerateNew = $bootstrapGenerateNew;
     }
 
     /**
-     * @param LaravelGenerateEdit $bootstrapGenerateEdit
+     * @param BootstrapGenerateEdit $bootstrapGenerateEdit
      */
-    public function setBootstrapGenerateEdit(LaravelGenerateEdit $bootstrapGenerateEdit): void
+    public function setBootstrapGenerateEdit(BootstrapGenerateEdit $bootstrapGenerateEdit): void
     {
         $this->bootstrapGenerateEdit = $bootstrapGenerateEdit;
     }
 
     /**
-     * @param LaravelGenerateDelete $bootstrapGenerateDelete
+     * @param BootstrapGenerateDelete $bootstrapGenerateDelete
      */
-    public function setBootstrapGenerateDelete(LaravelGenerateDelete $bootstrapGenerateDelete): void
+    public function setBootstrapGenerateDelete(BootstrapGenerateDelete $bootstrapGenerateDelete): void
     {
         $this->bootstrapGenerateDelete = $bootstrapGenerateDelete;
     }

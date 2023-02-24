@@ -47,8 +47,8 @@ class InitializeProvider implements ServiceProviderInterface
 
     public function registerLaravel(Container $pimple)
     {
-        $pimple->offsetSet(BootstrapGenerateCrud::class, static function($pimple) {
-            return new BootstrapGenerateCrud();
+        $pimple->offsetSet(LaravelGenerateCrud::class, static function($pimple) {
+            return new LaravelGenerateCrud();
         });
 
         $pimple->offsetSet(LaravelGenerateList::class, static function($pimple) {

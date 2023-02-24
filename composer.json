@@ -3,7 +3,11 @@
     "autoload": {
         "psr-4": {
             "WBGenerateForm\\Source\\": "src/"
-        }
+        },
+        "files": [
+            "src/Config/Config.php",
+            "vendor/autoload.php"
+        ]
     },
     "authors": [
         {
