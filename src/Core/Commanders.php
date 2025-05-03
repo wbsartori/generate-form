@@ -14,12 +14,9 @@ class Commanders
         'create-template-delete',
         'create-template-list',
         'create-template-form',
-        'update-template-add',
         'name::',
         'type:',
-        'extension:',
         'fields::',
-        'fieldsAdd:'
     ];
 
     public const COMMAND_OPTIONS = [
@@ -29,6 +26,5 @@ class Commanders
         'create-template-delete' => 'create-template-delete',
         'create-template-list' => 'create-template-list',
         'create-template-form' => 'create-template-form',
-        'update-template-add' => 'create-template-add',
     ];
 }
