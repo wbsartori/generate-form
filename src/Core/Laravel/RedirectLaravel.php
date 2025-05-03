@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WBGenerateForm\Source\Core\Laravel;
 
 use WBGenerateForm\Source\Core\Laravel\Generates\LaravelGenerateCrud;
-use WBGenerateForm\Source\Core\Laravel\Generates\LaravelGenerateEdit;
-use WBGenerateForm\Source\Core\Laravel\Generates\LaravelGenerateList;
-use WBGenerateForm\Source\Core\Laravel\Generates\LaravelGenerateNew;
 
 class RedirectLaravel
 {
@@ -13,18 +12,6 @@ class RedirectLaravel
      * @var LaravelGenerateCrud
      */
     private LaravelGenerateCrud $laravelGenerateCrud;
-    /**
-     * @var LaravelGenerateList
-     */
-    private LaravelGenerateList $laravelGenerateList;
-    /**
-     * @var LaravelGenerateNew
-     */
-    private LaravelGenerateNew $laravelGenerateNew;
-    /**
-     * @var LaravelGenerateEdit
-     */
-    private LaravelGenerateEdit $laravelGenerateEdit;
 
     /**
      * @param string $typeAction
@@ -35,20 +22,28 @@ class RedirectLaravel
     {
         switch ($typeAction) {
             case $typeAction === 'crud':
-                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates crud wait!\e[0m\n";
-                $this->laravelGenerateCrud->generate($commands);
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates crud wait!\e[0m\n";
+                $this->laravelGenerateCrud->generateAll($commands);
                 break;
             case $typeAction === 'list':
-                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates list wait!\e[0m\n";
-                $this->laravelGenerateList->generate($commands);
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates list wait!\e[0m\n";
+                $this->laravelGenerateCrud->generateList($commands);
                 break;
             case $typeAction === 'new':
-                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates new wait!\e[0m\n";
-                $this->laravelGenerateNew->generate($commands);
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates new wait!\e[0m\n";
+                $this->laravelGenerateCrud->generateNew($commands);
                 break;
             case $typeAction === 'edit':
-                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates edit wait!\e[0m\n";
-                $this->laravelGenerateEdit->generate($commands);
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates edit wait!\e[0m\n";
+                $this->laravelGenerateCrud->generateEdit($commands);
+                break;
+            case $typeAction === 'delete':
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates delete wait!\e[0m\n";
+                $this->laravelGenerateCrud->generateDelete($commands);
+                break;
+            case $typeAction === 'form':
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates form wait!\e[0m\n";
+                $this->laravelGenerateCrud->generateForm($commands);
                 break;
             default:
                 echo "\e[1;31;41mERROR: Command \e[1m" . $typeAction . "\e[1;31;41m not found in commands list!\e[0m\n";
@@ -62,29 +57,5 @@ class RedirectLaravel
     public function setLaravelGenerateCrud(LaravelGenerateCrud $laravelGenerateCrud): void
     {
         $this->laravelGenerateCrud = $laravelGenerateCrud;
-    }
-
-    /**
-     * @param LaravelGenerateList $laravelGenerateList
-     */
-    public function setLaravelGenerateList(LaravelGenerateList $laravelGenerateList): void
-    {
-        $this->laravelGenerateList = $laravelGenerateList;
-    }
-
-    /**
-     * @param LaravelGenerateNew $laravelGenerateNew
-     */
-    public function setLaravelGenerateNew(LaravelGenerateNew $laravelGenerateNew): void
-    {
-        $this->laravelGenerateNew = $laravelGenerateNew;
-    }
-
-    /**
-     * @param LaravelGenerateEdit $laravelGenerateEdit
-     */
-    public function setLaravelGenerateEdit(LaravelGenerateEdit $laravelGenerateEdit): void
-    {
-        $this->laravelGenerateEdit = $laravelGenerateEdit;
     }
 }

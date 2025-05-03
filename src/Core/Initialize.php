@@ -1,8 +1,8 @@
 <?php
 
-namespace WBGenerateForm\Source\Core;
+declare(strict_types=1);
 
-use WBGenerateForm\Source\Config\Commanders;
+namespace WBGenerateForm\Source\Core;
 
 class Initialize
 {
@@ -27,8 +27,8 @@ class Initialize
         $this->setOptions();
 
         if(!in_array(str_replace('--', '', $argv[1]),  Commanders::COMMAND_OPTIONS)){
-            echo "\e[1;31;41mERROR: Command \e[1m" . $argv[1] . "\e[1;31;41m not found in commands list!\e[0m\n";
-            echo "\e[1;33;43mWARNING: to know the possible commands type 'php generate --help'!\e[0m\n";
+            echo "\e[1;30;42mERROR: Command \e[1m" . $argv[1] . "\e[1;30;42m not found in commands list!\e[0m\n";
+            echo "\e[1;30;42mWARNING: to know the possible commands type 'php generate --help'!\e[0m\n";
             exit;
         }
 

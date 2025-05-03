@@ -1,5 +1,8 @@
 <?php
-namespace WBGenerateForm\Source\Config;
+
+declare(strict_types=1);
+
+namespace WBGenerateForm\Source\Core;
 class Commanders
 {
     public const SHORT = '';
@@ -10,9 +13,9 @@ class Commanders
         'create-template-edit',
         'create-template-delete',
         'create-template-list',
+        'create-template-form',
         'update-template-add',
         'name::',
-        'path::',
         'type:',
         'extension:',
         'fields::',
@@ -25,6 +28,7 @@ class Commanders
         'create-template-edit' => 'create-template-edit',
         'create-template-delete' => 'create-template-delete',
         'create-template-list' => 'create-template-list',
+        'create-template-form' => 'create-template-form',
         'update-template-add' => 'create-template-add',
     ];
 }

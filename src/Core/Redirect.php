@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WBGenerateForm\Source\Core;
 
-use WBGenerateForm\Source\Config\Commanders;
 use WBGenerateForm\Source\Core\Bootstrap\RedirectBootstrap;
 use WBGenerateForm\Source\Core\Laravel\RedirectLaravel;
 

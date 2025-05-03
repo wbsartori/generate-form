@@ -51,25 +51,9 @@ class InitializeProvider implements ServiceProviderInterface
             return new LaravelGenerateCrud();
         });
 
-        $pimple->offsetSet(LaravelGenerateList::class, static function($pimple) {
-            return new LaravelGenerateList();
-        });
-
-        $pimple->offsetSet(LaravelGenerateNew::class, static function($pimple) {
-            return new LaravelGenerateNew();
-        });
-
-        $pimple->offsetSet(LaravelGenerateEdit::class, static function($pimple) {
-            return new LaravelGenerateEdit();
-        });
-
         $pimple->offsetSet(RedirectLaravel::class, static function($pimple) {
             $redirectBootstrap = new RedirectLaravel();
             $redirectBootstrap->setLaravelGenerateCrud($pimple[LaravelGenerateCrud::class]);
-            $redirectBootstrap->setLaravelGenerateList($pimple[LaravelGenerateList::class]);
-            $redirectBootstrap->setLaravelGenerateNew($pimple[LaravelGenerateNew::class]);
-            $redirectBootstrap->setLaravelGenerateEdit($pimple[LaravelGenerateEdit::class]);
-
             return $redirectBootstrap;
         });
     }
@@ -80,29 +64,9 @@ class InitializeProvider implements ServiceProviderInterface
             return new BootstrapGenerateCrud();
         });
 
-        $pimple->offsetSet(BootstrapGenerateList::class, static function($pimple) {
-            return new BootstrapGenerateList();
-        });
-
-        $pimple->offsetSet(BootstrapGenerateNew::class, static function($pimple) {
-            return new BootstrapGenerateNew();
-        });
-
-        $pimple->offsetSet(BootstrapGenerateEdit::class, static function($pimple) {
-            return new BootstrapGenerateEdit();
-        });
-
-        $pimple->offsetSet(BootstrapGenerateDelete::class, static function($pimple) {
-            return new BootstrapGenerateDelete();
-        });
-
         $pimple->offsetSet(RedirectBootstrap::class, static function($pimple) {
             $redirectBootstrap = new RedirectBootstrap();
             $redirectBootstrap->setBootstrapGenerateCrud($pimple[BootstrapGenerateCrud::class]);
-            $redirectBootstrap->setBootstrapGenerateList($pimple[BootstrapGenerateList::class]);
-            $redirectBootstrap->setBootstrapGenerateNew($pimple[BootstrapGenerateNew::class]);
-            $redirectBootstrap->setBootstrapGenerateEdit($pimple[BootstrapGenerateEdit::class]);
-            $redirectBootstrap->setBootstrapGenerateDelete($pimple[BootstrapGenerateDelete::class]);
 
             return $redirectBootstrap;
         });

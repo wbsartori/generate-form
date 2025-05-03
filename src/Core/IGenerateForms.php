@@ -1,6 +1,8 @@
 <?php
 
-namespace WBGenerateForm\Source\Core\Interfaces;
+declare(strict_types=1);
+
+namespace WBGenerateForm\Source\Core;
 
 interface IGenerateForms
 {
@@ -8,4 +10,5 @@ interface IGenerateForms
     public function generateNew(array $commands);
     public function generateEdit(array $commands);
     public function generateDelete(array $commands);
+    public function generateForm(array $commands);
 }

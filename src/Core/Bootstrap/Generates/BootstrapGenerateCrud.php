@@ -2,7 +2,9 @@
 
 namespace WBGenerateForm\Source\Core\Bootstrap\Generates;
 
-class BootstrapGenerateCrud
+use WBGenerateForm\Source\Core\IGenerateForms;
+
+class BootstrapGenerateCrud implements IGenerateForms
 {
     /**
      * @param array $commands
@@ -19,9 +21,23 @@ class BootstrapGenerateCrud
         echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mSuccessfully generated templates crud!\e[0m\n";
     }
 
+    public function generateAll(array $commands)
+    {
+        $this->generateList($commands);
+        $this->generateNew($commands);
+        $this->generateEdit($commands);
+        $this->generateDelete($commands);
+        $this->generateForm($commands);
+        sleep(2);
+        echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mSuccessfully generated templates crud!\e[0m\n";
+    }
+
     public function generateList(array $commands)
     {
         $folder = $this->verifyExistsDirectoryOrCreate($commands['path']);
+        echo '<pre>';
+        print_r($folder);
+        exit;
         $template = BASE_ROOT . 'src\Core\Forms\Bootstrap\index.php';
         $file = file_get_contents($template);
         $fileData = fopen($folder . DIRECTORY_SEPARATOR . "index.php", "w") or die("Unable to open file!");
@@ -75,9 +91,10 @@ class BootstrapGenerateCrud
      */
     public function verifyExistsDirectoryOrCreate(string $path): string
     {
-        $pathAbsolute = BASE_ROOT . 'templates' . DIRECTORY_SEPARATOR . str_replace('/', '\\', $path);
-
-        if (!is_dir($pathAbsolute)) {
+        $pathAbsolute = dirname(__DIR__, 4)
+            . DIRECTORY_SEPARATOR
+            . $_ENV['DIRECTORY_VIEWS_NAME'] . DIRECTORY_SEPARATOR . $path;
+        if (is_dir($pathAbsolute)) {
             mkdir($pathAbsolute);
             return $pathAbsolute;
         }
