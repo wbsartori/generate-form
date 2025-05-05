@@ -1,45 +1,114 @@
-### Versão do Projeto  0.0.1
+# Gerador de formulários base
 
+---
 
-##### Tecnologias utilizadadas
-###### php7.4 | 8.2
-###### Bootstrap 5.2
-
-<hr>
-
-### Descrição
-<hr>  
+## Descrição
 
 Gerador de arquivos front-end, gera 4 arquivos _list, _new, _edit e _delete.
 
-###### Commands
-<hr>
+---
 
-##### create-template:crud		- cria um crud completo new, edit, delete e listar
-##### create-template:new 		- cria um template para inserir dados
-##### create-template:edit 		- cria um template para editar dados
-##### create-template:delete 		- cria um template para remover dados
-##### create-template:list 		- cria um template para listar dados
+## Commands
 
-##### update-template:add 		- cria um template para listar dados
+---
 
-##### name=						- nome do template
-##### path=						- caminho onde será criado os templates
-##### type=						- bootstrap
-##### extension=					- php
-##### fields=						- nome dos campos exemplo: nome:tipo separe com virgula para mais de um campo
+Cria um crud completo new, edit, delete e listar
 
-##### fieldsAdd=					- adiciona mais um
+```bash
+  php generate-form --create-template-crud
+```
+
+Cria um arquivo new para gerar um novo registro
+
+```bash
+  php generate-form --create-template-new
+```
+
+Cria um arquivo edit para edição de dados
+
+```bash
+  php generate-form --create-template-edit
+```
+
+Cria um arquivo index para listar os dados
+
+```bash
+  php generate-form --create-template-list
+```
+
+Adiciona mais campos ao formulário que foi gerado, sempre irá adicionar ao final 
+do arquivo de acordo com os campos passados na opção.
+**--fields**
+
+```bash
+  php generate-form --create-template-add-fields
+```
+
+---
+
+## Parâmetros possíveis
+
+Nome da pasta do formulário.
+
+````bash
+    --name=folder_form
+````
+
+Tipo de template a ser criado, Laravel ou Bootstrap são as opções possíveis.
+
+````bash
+    --type=tipo
+````
+
+Quando for usado a opção create-template-form ou create-template-add-fields, é possíve
+passar o parâmetro --fields para estipular quais campos devem ser criados no arquivo de formulário.
+
+````bash
+    --fields="fiel:type"
+````
+
+---
+
+## Exemplos:
+
+Cria um crud completo new, edit, delete e listar
+
+```bash
+  php generate-form --create-template-crud --name=customer --type=laravel --fields="name:text, age:number, birthDate:date"
+```
+
+Cria um arquivo new para gerar um novo registro
+
+```bash
+  php generate-form --create-template-new --name=customer --type=laravel --fields="name:text, age:number, birthDate:date"
+```
 
 
-<hr>
+Cria um arquivo edit para edição de dados
 
-###### Exemplos:
+```bash
+  php generate-form --create-template-edit --name=customer --type=laravel --fields="name:text, age:number, birthDate:date"
+```
 
-##### php --create-template-crud    --name=Clients --path=App/Views --type=html --extension=html fields=name:text, age:number, birthDate:date
-##### php --create-template-new     --name=Clients --path=App/Views/Clients --type=html --extension=html fields=name:text, age:number, birthDate:date
-##### php --create-template-edit    --name=Clients --path=App/Views/Clients --type=html --extension=html fields=name:text, age:number, birthDate:date
-##### php --create-template-delete  --name=Clients --path=App/Views/Clients --type=html --extension=html fields=name:text, age:number, birthDate:date
-##### php --create-template-list    --name=Clients --path=App/Views/Clients --type=html --extension=html fields=name:text, age:number, birthDate:date
 
-##### php update-template:add     --name=Clients --path=App/Views/Clients/new fieldsAdd=lastName:text, status:text
+Cria um arquivo index para listar os dados
+
+```bash
+  php generate-form --create-template-list --name=customer --type=laravel --fields="name:text, age:number, birthDate:date"
+```
+
+Adiciona mais campos ao formulário que foi gerado, sempre irá adicionar ao final
+do arquivo de acordo com os campos passados na opção.
+**--fields**
+
+```bash
+  php generate-form --create-template-add-fields --name=customer --type=laravel --fields="name:text, age:number, birthDate:date"
+```
+
+---
+
+# Tecnologias
+
+- PHP >= 7.4
+- Bootstrap >= 5.2
+- Laravel >= 7
