@@ -22,6 +22,7 @@ class Redirect
     /**
      * @param $options
      * @return void
+     * @throws \Exception
      */
     public function validateOptions($options)
     {
@@ -34,7 +35,9 @@ class Redirect
                 break;
             case Commanders::COMMAND_OPTIONS[$commandFirst] && $options['type'] === 'laravel':
                 $action = $this->actionVerify($commandFirst);
-                $this->redirectLaravel->getTypeGenerate($action, $options);
+                if($action !== '') {
+                    $this->redirectLaravel->getTypeGenerate($action, $options);
+                }
                 break;
             default:
                 break;

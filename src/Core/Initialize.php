@@ -18,7 +18,9 @@ class Initialize
     private Redirect $redirect;
 
     /**
+     * @param array $argv
      * @return void
+     * @throws \Exception
      */
     public function run(array $argv)
     {

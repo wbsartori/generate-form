@@ -45,6 +45,10 @@ class RedirectLaravel
                 echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates form wait!\e[0m\n";
                 echo $this->laravelGenerateCrud->generateForm($commands);
                 break;
+            case $typeAction === 'add-fields':
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating fields to form wait!\e[0m\n";
+                echo $this->laravelGenerateCrud->generateFields($commands);
+                break;
             default:
                 echo "\e[1;31;41mERROR: Command \e[1m" . $typeAction . "\e[1;31;41m not found in commands list!\e[0m\n";
                 break;
