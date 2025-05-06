@@ -19,7 +19,7 @@ class Initialize
 
     /**
      * @param array $argv
-     * @return void
+     * @return string|void
      * @throws \Exception
      */
     public function run(array $argv)
@@ -28,10 +28,26 @@ class Initialize
         $this->setLongOptions(Commanders::LONG_OPTIONS);
         $this->setOptions();
 
-        if(!in_array(str_replace('--', '', $argv[1]),  Commanders::COMMAND_OPTIONS)){
-            echo "\e[1;30;42mERROR: Command \e[1m" . $argv[1] . "\e[1;30;42m not found in commands list!\e[0m\n";
-            echo "\e[1;30;42mWARNING: to know the possible commands type 'php generate --help'!\e[0m\n";
-            exit;
+        $commandOptions = str_replace('--', '', $argv[1]);
+        if($commandOptions === 'help') {
+            echo PHP_EOL;
+            echo "\e[1;30;43m\e[1m COMMANDERS \e[1;30;41m\e[0m" . PHP_EOL;
+            foreach (Commanders::COMMAND_OPTIONS as $COMMAND_OPTION) {
+                echo "\e[1;30;43m\e[1m" . $COMMAND_OPTION . "\e[1;30;41m\e[0m" . PHP_EOL;
+            }
+            echo PHP_EOL;
+            echo "\e[1;30;43m\e[1m PARAMETERS \e[1;30;41m\e[0m" . PHP_EOL;
+            foreach (Commanders::PARAMETERS_OPTIONS as $PARAMETERS_OPTION) {
+                echo "\e[1;30;43m\e[1m --" . $PARAMETERS_OPTION . "\e[1;30;41m\e[0m" . PHP_EOL;
+            }
+            echo PHP_EOL;
+            return '';
+        }
+        if(count($argv) <= 2){
+            return "\e[1;30;41mERROR: Command \e[1m" . $argv[1] . "\e[1;30;41m not found parameters!\e[0m\n";
+        }
+        if(!array_key_exists($commandOptions,  Commanders::COMMAND_OPTIONS)){
+            return "\e[1;30;41mERROR: Command \e[1m" . $argv[1] . "\e[1;30;41m not found in commands list!\e[0m\n";
         }
 
         $this->redirect->validateOptions($this->getOptions());

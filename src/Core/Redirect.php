@@ -27,7 +27,6 @@ class Redirect
     public function validateOptions($options)
     {
         $commandFirst = array_key_first($options);
-
         switch ($commandFirst) {
             case Commanders::COMMAND_OPTIONS[$commandFirst] && (empty($options['type']) || $options['type'] === 'bootstrap'):
                 $action = $this->actionVerify($commandFirst);

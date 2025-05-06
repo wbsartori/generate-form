@@ -29,4 +29,10 @@ class Commanders
         'create-template-form' => 'create-template-form',
         'create-template-add-fields' => 'create-template-add-fields',
     ];
+
+    public const PARAMETERS_OPTIONS = [
+        'name:',
+        'type:',
+        'fields:',
+    ];
 }

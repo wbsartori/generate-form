@@ -13,11 +13,9 @@ try {
     Env::make();
     $container = new Container();
     $container->register((new InitializeProvider()));
-
     echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;42mSearching templates!\e[0m\n";
     sleep(2);
-
-    $container->offsetGet(Initialize::class)->run($argv);
+    echo $container->offsetGet(Initialize::class)->run($argv);
 } catch (Exception $exception) {
     echo $exception->getMessage();
 }
