@@ -1,12 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WBGenerateForm\Source\Core\Bootstrap;
 
 use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateCrud;
-use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateDelete;
-use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateEdit;
-use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateList;
-use WBGenerateForm\Source\Core\Bootstrap\Generates\BootstrapGenerateNew;
 
 class RedirectBootstrap
 {
@@ -19,29 +17,38 @@ class RedirectBootstrap
      * @param string $typeAction
      * @param array $commands
      * @return void
+     * @throws \Exception
+     *
      */
     public function getTypeGenerate(string $typeAction, array $commands)
     {
         switch ($typeAction) {
             case $typeAction === 'crud':
-                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates crud wait!\e[0m\n";
-                $this->bootstrapGenerateCrud->generateAll($commands);
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates crud wait!\e[0m\n";
+                echo $this->bootstrapGenerateCrud->generateAll($commands);
                 break;
             case $typeAction === 'list':
-                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates list wait!\e[0m\n";
-                $this->bootstrapGenerateCrud->generateList($commands);
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates list wait!\e[0m\n";
+                echo $this->bootstrapGenerateCrud->generateList($commands);
                 break;
             case $typeAction === 'new':
-                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates new wait!\e[0m\n";
-                $this->bootstrapGenerateCrud->generateNew($commands);
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates new wait!\e[0m\n";
+                echo $this->bootstrapGenerateCrud->generateNew($commands);
                 break;
             case $typeAction === 'edit':
-                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates edit wait!\e[0m\n";
-                $this->bootstrapGenerateCrud->generateEdit($commands);
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates edit wait!\e[0m\n";
+                echo $this->bootstrapGenerateCrud->generateEdit($commands);
                 break;
             case $typeAction === 'delete':
-                echo "\e[1;37;42mSUCCESS:\e[1m" . ' ' . "\e[1;37;37mGenerating templates delete wait!\e[0m\n";
-                $this->bootstrapGenerateCrud->generateDelete($commands);
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates delete wait!\e[0m\n";
+                echo $this->bootstrapGenerateCrud->generateDelete($commands);
+            case $typeAction === 'form':
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates form wait!\e[0m\n";
+                echo $this->bootstrapGenerateCrud->generateForm($commands);
+                break;
+            case $typeAction === 'add-fields':
+                echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating fields to form wait!\e[0m\n";
+                echo $this->bootstrapGenerateCrud->generateFields($commands);
                 break;
             default:
                 echo "\e[1;31;41mERROR: Command \e[1m" . $typeAction . "\e[1;31;41m not found in commands list!\e[0m\n";
