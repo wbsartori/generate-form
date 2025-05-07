@@ -46,6 +46,8 @@ class BootstrapGenerateCrud implements IGenerateForms
             if (!strlen($response) > 0) {
                 throw new Exception("\e[1;33;41mERROR: \e[1m Ocorruded a error in created crud \e[0m\n");
             }
+            sleep(2);
+            return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mSuccessfully generated templates crud!\e[0m\n";
         } catch (Exception $exception) {
             echo $exception->getMessage();
         }
@@ -59,11 +61,11 @@ class BootstrapGenerateCrud implements IGenerateForms
             $folder = $this->verifyExistsDirectoryOrCreate($commands['name']);
             $template = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Bootstrap/Generates/Stubs' . DIRECTORY_SEPARATOR . 'index.stub';
             $file = file_get_contents($template);
-            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "index.blade.php";
+            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "index.php";
             if (file_exists($pathTemplate)) {
-                throw new Exception("\e[1;33;41mERROR: \e[1m file already exists \e[0m\n");
+                throw new Exception("\e[1;33;41mERROR: \e[1m file index.php already exists \e[0m\n");
             }
-            $fileData = fopen($folder . DIRECTORY_SEPARATOR . "index.blade.php", "w") or die("Unable to open file!");
+            $fileData = fopen($folder . DIRECTORY_SEPARATOR . "index.php", "w") or die("Unable to open file!");
             fwrite($fileData, $file);
             fclose($fileData);
         } catch (Exception $exception) {
@@ -79,13 +81,13 @@ class BootstrapGenerateCrud implements IGenerateForms
             $folder = $this->verifyExistsDirectoryOrCreate($commands['name']);
             $template = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Bootstrap/Generates/Stubs' . DIRECTORY_SEPARATOR . 'new.stub';
             $file = file_get_contents($template);
-            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "new.blade.php";
-            if (!file_exists($pathTemplate)) {
-                $fileData = fopen($folder . DIRECTORY_SEPARATOR . "new.blade.php", "w") or die("Unable to open file!");
-                fwrite($fileData, $file);
-                fclose($fileData);
+            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "new.php";
+            if (file_exists($pathTemplate)) {
+                throw new Exception("\e[1;33;41mERROR: \e[1m file new.php already exists \e[0m\n");
             }
-            throw new Exception("\e[1;33;41mERROR: \e[1m file already exists \e[0m\n");
+            $fileData = fopen($folder . DIRECTORY_SEPARATOR . "new.php", "w") or die("Unable to open file!");
+            fwrite($fileData, $file);
+            fclose($fileData);
         } catch (Exception $exception) {
             echo $exception->getMessage();
         }
@@ -99,13 +101,13 @@ class BootstrapGenerateCrud implements IGenerateForms
             $folder = $this->verifyExistsDirectoryOrCreate($commands['name']);
             $template = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Bootstrap/Generates/Stubs' . DIRECTORY_SEPARATOR . 'edit.stub';
             $file = file_get_contents($template);
-            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "edit.blade.php";
-            if (!file_exists($pathTemplate)) {
-                $fileData = fopen($folder . DIRECTORY_SEPARATOR . "edit.blade.php", "w") or die("Unable to open file!");
-                fwrite($fileData, $file);
-                fclose($fileData);
+            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "edit.php";
+            if (file_exists($pathTemplate)) {
+                throw new Exception("\e[1;33;41mERROR: \e[1m file edit.php already exists \e[0m\n");
             }
-            throw new Exception("\e[1;33;41mERROR: \e[1m file already exists \e[0m\n");
+            $fileData = fopen($folder . DIRECTORY_SEPARATOR . "edit.php", "w") or die("Unable to open file!");
+            fwrite($fileData, $file);
+            fclose($fileData);
         } catch (\Throwable $exception) {
             echo $exception->getMessage();
         }
@@ -119,21 +121,22 @@ class BootstrapGenerateCrud implements IGenerateForms
             $folder = $this->verifyExistsDirectoryOrCreate($commands['name']);
             $template = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Bootstrap/Generates/Stubs' . DIRECTORY_SEPARATOR . '_form.stub';
             $file = file_get_contents($template);
-            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "_form.blade.php";
-            if (!file_exists($pathTemplate)) {
-                $fileData = fopen($pathTemplate, "w") or die("Unable to open file!");
-                fwrite($fileData, $file);
-                fclose($fileData);
-                if(isset($commands['fields'])) {
-                    $this->addFields($commands['fields'], $folder);
-                }
-                sleep(2);
-                return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating template form with success!\e[0m\n";
-            } else if(file_exists($pathTemplate) && isset($commands['fields'])) {
+            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "_form.php";
+            if (file_exists($pathTemplate)) {
+                throw new Exception("\e[1;33;41mERROR: \e[1m file _form.php already exists \e[0m\n");
+            }
+            if (file_exists($pathTemplate) && isset($commands['fields'])) {
                 $this->addFields($commands['fields'], $folder);
                 return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating template form with success!\e[0m\n";
             }
-            throw new Exception("\e[1;33;41mERROR: \e[1m file already exists \e[0m\n");
+            $fileData = fopen($pathTemplate, "w") or die("Unable to open file!");
+            fwrite($fileData, $file);
+            fclose($fileData);
+            if (isset($commands['fields'])) {
+                $this->addFields($commands['fields'], $folder);
+            }
+            sleep(2);
+            return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating template form with success!\e[0m\n";
         } catch (Exception $exception) {
             echo $exception->getMessage();
         }
@@ -156,13 +159,13 @@ class BootstrapGenerateCrud implements IGenerateForms
     public function addFields(string $fields, string $folder): string
     {
         try {
-            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "_form.blade.php";
+            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "_form.php";
             $arrayFields = explode(',', $fields);
             foreach ($arrayFields as $field) {
                 $name = explode(':', $field)[0];
                 $type = explode(':', $field)[1];
-                if(in_array($type, self::INPUT_TYPES)) {
-                    file_put_contents($pathTemplate, "<input type='".$type."' id='".$name."' name='".$name."'>" . PHP_EOL, FILE_APPEND);
+                if (in_array($type, self::INPUT_TYPES)) {
+                    file_put_contents($pathTemplate, "<input type='" . $type . "' id='" . $name . "' name='" . $name . "'>" . PHP_EOL, FILE_APPEND);
                 }
             }
         } catch (Exception $exception) {
@@ -184,9 +187,9 @@ class BootstrapGenerateCrud implements IGenerateForms
     public function verifyExistsDirectoryOrCreate(string $templateName = ''): string
     {
         try {
-            $directoryViewsName = $_ENV['DIRECTORY_VIEWS_NAME'];
+            $directoryViewsName = $_ENV['GENERATE_FORM_VIEWS'];
             if ($templateName !== '') {
-                $directoryViewsName = $_ENV['DIRECTORY_VIEWS_NAME'] . DIRECTORY_SEPARATOR . $templateName;
+                $directoryViewsName = $_ENV['GENERATE_FORM_VIEWS'] . DIRECTORY_SEPARATOR . $templateName;
             }
             $folder = dirname(__DIR__, 5)
                 . DIRECTORY_SEPARATOR

@@ -46,7 +46,7 @@ class LaravelGenerateCrud implements IGenerateForms
             $response .= $this->generateFields($commands);
 
             if (!strlen($response) > 0) {
-                throw new Exception("\e[1;33;41mERROR: \e[1m Ocorruded a error in created crud \e[0m\n");
+                throw new Exception("\e[1;33;41mERROR:\e[1m Ocorruded a error in created crud \e[0m\n");
             }
         } catch (Exception $exception) {
             echo $exception->getMessage();
@@ -63,7 +63,7 @@ class LaravelGenerateCrud implements IGenerateForms
             $file = file_get_contents($template);
             $pathTemplate = $folder . DIRECTORY_SEPARATOR . "index.blade.php";
             if (file_exists($pathTemplate)) {
-                throw new Exception("\e[1;33;41mERROR: \e[1m file already exists \e[0m\n");
+                throw new Exception("\e[1;33;41mERROR:\e[1m file index.blade.php already exists \e[0m\n");
             }
             $fileData = fopen($folder . DIRECTORY_SEPARATOR . "index.blade.php", "w") or die("Unable to open file!");
             fwrite($fileData, $file);
@@ -82,12 +82,12 @@ class LaravelGenerateCrud implements IGenerateForms
             $template = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Laravel/Generates/Stubs' . DIRECTORY_SEPARATOR . 'new.stub';
             $file = file_get_contents($template);
             $pathTemplate = $folder . DIRECTORY_SEPARATOR . "new.blade.php";
-            if (!file_exists($pathTemplate)) {
-                $fileData = fopen($folder . DIRECTORY_SEPARATOR . "new.blade.php", "w") or die("Unable to open file!");
-                fwrite($fileData, $file);
-                fclose($fileData);
+            if (file_exists($pathTemplate)) {
+                throw new Exception("\e[1;33;41mERROR:\e[1m file new.blade.php already exists \e[0m\n");
             }
-            throw new Exception("\e[1;33;41mERROR: \e[1m file already exists \e[0m\n");
+            $fileData = fopen($folder . DIRECTORY_SEPARATOR . "new.blade.php", "w") or die("Unable to open file!");
+            fwrite($fileData, $file);
+            fclose($fileData);
         } catch (Exception $exception) {
             echo $exception->getMessage();
         }
@@ -102,12 +102,12 @@ class LaravelGenerateCrud implements IGenerateForms
             $template = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Laravel/Generates/Stubs' . DIRECTORY_SEPARATOR . 'edit.stub';
             $file = file_get_contents($template);
             $pathTemplate = $folder . DIRECTORY_SEPARATOR . "edit.blade.php";
-            if (!file_exists($pathTemplate)) {
-                $fileData = fopen($folder . DIRECTORY_SEPARATOR . "edit.blade.php", "w") or die("Unable to open file!");
-                fwrite($fileData, $file);
-                fclose($fileData);
+            if (file_exists($pathTemplate)) {
+                throw new Exception("\e[1;33;41mERROR:\e[1m file edit.blade.php already exists \e[0m\n");
             }
-            throw new Exception("\e[1;33;41mERROR: \e[1m file already exists \e[0m\n");
+            $fileData = fopen($folder . DIRECTORY_SEPARATOR . "edit.blade.php", "w") or die("Unable to open file!");
+            fwrite($fileData, $file);
+            fclose($fileData);
         } catch (\Throwable $exception) {
             echo $exception->getMessage();
         }
@@ -122,20 +122,21 @@ class LaravelGenerateCrud implements IGenerateForms
             $template = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Laravel/Generates/Stubs' . DIRECTORY_SEPARATOR . '_form.stub';
             $file = file_get_contents($template);
             $pathTemplate = $folder . DIRECTORY_SEPARATOR . "_form.blade.php";
-            if (!file_exists($pathTemplate)) {
-                $fileData = fopen($pathTemplate, "w") or die("Unable to open file!");
-                fwrite($fileData, $file);
-                fclose($fileData);
-                if(isset($commands['fields'])) {
-                    $this->addFields($commands['fields'], $folder);
-                }
-                sleep(2);
-                return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating template form with success!\e[0m\n";
-            } else if(file_exists($pathTemplate) && isset($commands['fields'])) {
+            if (file_exists($pathTemplate)) {
+                throw new Exception("\e[1;33;41mERROR:\e[1m file _form.blade.php already exists \e[0m\n");
+            }
+            if(file_exists($pathTemplate) && isset($commands['fields'])) {
                 $this->addFields($commands['fields'], $folder);
                 return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating template form with success!\e[0m\n";
             }
-            throw new Exception("\e[1;33;41mERROR: \e[1m file already exists \e[0m\n");
+            $fileData = fopen($pathTemplate, "w") or die("Unable to open file!");
+            fwrite($fileData, $file);
+            fclose($fileData);
+            if(isset($commands['fields'])) {
+                $this->addFields($commands['fields'], $folder);
+            }
+            sleep(2);
+            return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating template form with success!\e[0m\n";
         } catch (Exception $exception) {
             echo $exception->getMessage();
         }
@@ -186,9 +187,9 @@ class LaravelGenerateCrud implements IGenerateForms
     public function verifyExistsDirectoryOrCreate(string $templateName = ''): string
     {
         try {
-            $directoryViewsName = $_ENV['DIRECTORY_VIEWS_NAME'];
+            $directoryViewsName = $_ENV['GENERATE_FORM_VIEWS'];
             if ($templateName !== '') {
-                $directoryViewsName = $_ENV['DIRECTORY_VIEWS_NAME'] . DIRECTORY_SEPARATOR . $templateName;
+                $directoryViewsName = $_ENV['GENERATE_FORM_VIEWS'] . DIRECTORY_SEPARATOR . $templateName;
             }
             $folder = dirname(__DIR__, 5)
                 . DIRECTORY_SEPARATOR

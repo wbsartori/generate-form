@@ -22,35 +22,35 @@ class RedirectLaravel
     public function getTypeGenerate(string $typeAction, array $commands)
     {
         switch ($typeAction) {
-            case $typeAction === 'crud':
+            case $typeAction === 'crud' && isset($commands['name']) && isset($commands['fields']):
                 echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates crud wait!\e[0m\n";
                 echo $this->laravelGenerateCrud->generateAll($commands);
                 break;
-            case $typeAction === 'list':
+            case $typeAction === 'list' && isset($commands['name']):
                 echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates list wait!\e[0m\n";
                 echo $this->laravelGenerateCrud->generateList($commands);
                 break;
-            case $typeAction === 'new':
+            case $typeAction === 'new' && isset($commands['name']):
                 echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates new wait!\e[0m\n";
                 echo $this->laravelGenerateCrud->generateNew($commands);
                 break;
-            case $typeAction === 'edit':
+            case $typeAction === 'edit' && isset($commands['name']):
                 echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates edit wait!\e[0m\n";
                 echo $this->laravelGenerateCrud->generateEdit($commands);
                 break;
-            case $typeAction === 'delete':
+            case $typeAction === 'delete' && isset($commands['name']):
                 echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates delete wait!\e[0m\n";
                 echo $this->laravelGenerateCrud->generateDelete($commands);
-            case $typeAction === 'form':
+            case $typeAction === 'form' && isset($commands['name']) && isset($commands['fields']):
                 echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating templates form wait!\e[0m\n";
                 echo $this->laravelGenerateCrud->generateForm($commands);
                 break;
-            case $typeAction === 'add-fields':
+            case $typeAction === 'add-fields' && isset($commands['name']) && isset($commands['fields']):
                 echo "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating fields to form wait!\e[0m\n";
                 echo $this->laravelGenerateCrud->generateFields($commands);
                 break;
             default:
-                echo "\e[1;31;41mERROR: Command \e[1m" . $typeAction . "\e[1;31;41m not found in commands list!\e[0m\n";
+                echo "\e[1;31;41mERROR: Command not found in commands list or parameters not declared\e[0m\n";
                 break;
         }
     }

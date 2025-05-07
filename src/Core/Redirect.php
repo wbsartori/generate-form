@@ -28,17 +28,18 @@ class Redirect
     {
         $commandFirst = array_key_first($options);
         switch ($commandFirst) {
-            case Commanders::COMMAND_OPTIONS[$commandFirst] && (empty($options['type']) || $options['type'] === 'bootstrap'):
+            case Commanders::COMMAND_OPTIONS[$commandFirst] && $_ENV['GENERATE_FORM_TYPE'] === 'bootstrap':
                 $action = $this->actionVerify($commandFirst);
                 $this->redirectBootstrap->getTypeGenerate($action, $options);
                 break;
-            case Commanders::COMMAND_OPTIONS[$commandFirst] && $options['type'] === 'laravel':
+            case Commanders::COMMAND_OPTIONS[$commandFirst]  && $_ENV['GENERATE_FORM_TYPE'] === 'laravel':
                 $action = $this->actionVerify($commandFirst);
                 if($action !== '') {
                     $this->redirectLaravel->getTypeGenerate($action, $options);
                 }
                 break;
             default:
+                echo "\e[1;31;41mERROR: 'GENERATE_FORM_TYPE' not configured in file .env\e[0m\n";
                 break;
         }
     }
