@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WBGenerateForm\Source\Core\Bootstrap\Generates;
 
 use Exception;
@@ -42,6 +44,8 @@ class BootstrapGenerateCrud implements IGenerateForms
             $response .= $this->generateEdit($commands);
             $response .= $this->generateForm($commands);
             $response .= $this->generateFields($commands);
+            $response .= $this->generateHeader($commands);
+            $response .= $this->generateFooter($commands);
 
             if (!strlen($response) > 0) {
                 throw new Exception("\e[1;33;41mERROR: \e[1m Ocorruded a error in created crud \e[0m\n");
@@ -142,6 +146,50 @@ class BootstrapGenerateCrud implements IGenerateForms
         }
         sleep(2);
         return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating template form with success!\e[0m\n";
+    }
+
+    public function generateHeader(array $commands)
+    {
+        try {
+            $folder = $this->verifyExistsDirectoryOrCreate($commands['name']);
+            $template = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Bootstrap/Generates/Stubs' . DIRECTORY_SEPARATOR . 'include.header.stub';
+            $file = file_get_contents($template);
+            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "include.header.php";
+            if (file_exists($pathTemplate)) {
+                throw new Exception("\e[1;33;41mERROR: \e[1m file include.header.php already exists \e[0m\n");
+            }
+            $fileData = fopen($pathTemplate, "w") or die("Unable to open file!");
+            fwrite($fileData, $file);
+            fclose($fileData);
+            sleep(2);
+            return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating layouts with success!\e[0m\n";
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
+        }
+        sleep(2);
+        return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating layouts with success!\e[0m\n";
+    }
+
+    public function generateFooter(array $commands)
+    {
+        try {
+            $folder = $this->verifyExistsDirectoryOrCreate($commands['name']);
+            $template = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Bootstrap/Generates/Stubs' . DIRECTORY_SEPARATOR . 'include.footer.stub';
+            $file = file_get_contents($template);
+            $pathTemplate = $folder . DIRECTORY_SEPARATOR . "include.footer.php";
+            if (file_exists($pathTemplate)) {
+                throw new Exception("\e[1;33;41mERROR: \e[1m file include.footer.php already exists \e[0m\n");
+            }
+            $fileData = fopen($pathTemplate, "w") or die("Unable to open file!");
+            fwrite($fileData, $file);
+            fclose($fileData);
+            sleep(2);
+            return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating layouts with success!\e[0m\n";
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
+        }
+        sleep(2);
+        return "\e[1;30;42mSUCCESS:\e[1m" . ' ' . "\e[1;30;30mGenerating layouts with success!\e[0m\n";
     }
 
     public function generateFields(array $commands): string

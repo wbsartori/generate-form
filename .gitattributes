@@ -1,0 +1,7 @@
+/vendor
+/assets
+.env-sample
+.gitignore
+LICENSE
+README.MD
+composer.lock
