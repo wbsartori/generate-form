@@ -1,5 +1,7 @@
 {
     "name": "wbsartori/generate-form",
+    "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "WBGenerateForm\\Source\\": "src/"
