@@ -239,7 +239,7 @@ class BootstrapGenerateCrud implements IGenerateForms
             if ($templateName !== '') {
                 $directoryViewsName = $_ENV['GENERATE_FORM_VIEWS'] . DIRECTORY_SEPARATOR . $templateName;
             }
-            $folder = dirname(__DIR__, 5)
+            $folder = dirname(__DIR__, 7)
                 . DIRECTORY_SEPARATOR
                 . $directoryViewsName;
             $pathAbsolute = realpath($folder);

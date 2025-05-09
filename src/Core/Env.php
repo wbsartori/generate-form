@@ -7,11 +7,11 @@ use Dotenv\Dotenv;
 
 class Env
 {
-    private static int $directoryLevel = 2;
+    private static int $directoryLevel = 5;
 
     private static string $filename = '.env';
 
-    public static function make(string $filename = '.env', int $directoryLevel = 2): Env
+    public static function make(string $filename = '.env', int $directoryLevel = 5): Env
     {
         self::$directoryLevel = $directoryLevel;
         self::$filename = $filename;
