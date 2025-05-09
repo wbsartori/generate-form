@@ -1,5 +1,9 @@
-/vendor
-/assets
+/assets  export-ignore
 .env-sample
-.gitignore
-composer.lock
+composer.lock  export-ignore
+/tests export-ignore
+/.gitignore export-ignore
+/docs  export-ignore
+/.github export-ignore
+/phpunit.xml export-ignore
+/.gitattributes export-ignore
