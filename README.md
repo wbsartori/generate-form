@@ -8,6 +8,19 @@ Gerador de arquivos front-end, gera 4 arquivos _list, _new, _edit e _delete.
 
 ---
 
+
+## Configuração
+
+Caso não tenha crie um arquivo .env na raiz do seu projeto 
+
+
+```dotenv
+GENERATE_FORM_VIEWS='templates' #nome do local onde será criado as páginas
+GENERATE_FORM_TYPE='bootstrap' #laravel ou bootstrap
+```
+
+---
+
 ## Commands
 
 ---
