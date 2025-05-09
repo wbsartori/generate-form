@@ -1,5 +1,6 @@
 {
     "name": "wbsartori/generate-form",
+    "description": "Este projeto tem a finalidade de gerar formulários",
     "type": "library",
     "license": "MIT",
     "autoload": {
